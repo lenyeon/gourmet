@@ -1,1 +1,7 @@
-hello,
+<ul>
+{% for shop in shop_list %}
+<li>
+    {{ shop.name }}
+</li>
+{% endfor %}
+</ul>
