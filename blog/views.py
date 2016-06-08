@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Shop, Review
 from .forms import ReviewForm
+from django.contrib import messages
 
 def index(request):
     shop_list = Shop.objects.all()
@@ -23,8 +24,9 @@ def review_new(request, shop_pk):
             review = form.save(commit=False)
             review = form.save(commit=False)
             review.shop = get_object_or_404(Shop, pk=shop_pk)
-            shop.user = request.user
-            shop.save()
+            review.user = request.user
+            review.save()
+            message.success(request, '새로운댓글이등록')
             return redirect('blog:shop_detail', shop_pk)
     else:
         form = ReviewForm()
@@ -43,6 +45,7 @@ def review_edit(request, shop_pk, pk):
             review.shop = get_object_or_404(Shop, pk=shop_pk)
             review.user = request.user
             review.save()
+            message.success(request, '댓글이수정')
             return redirect('blog:shop_detail', shop_pk)
     else:
         form = ReviewForm(instance=review)
