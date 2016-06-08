@@ -1,6 +1,7 @@
 <ul>
 {% for shop in shop_list %}
 <li>
+<a href="{% url "blog:shop_detail" shop.pk %}">
     {{ shop.name }}
 </li>
 {% endfor %}
