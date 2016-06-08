@@ -1,3 +1,6 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
 
 <h1> {{ shop.name }} <h1>
 
@@ -13,3 +16,5 @@
 
  <hr/>
  <a href="{% url "blog:index" %}">글 목록</a>
+
+ {% endblock %}

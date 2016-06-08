@@ -1,8 +1,16 @@
-<ul>
-{% for shop in shop_list %}
-<li>
-<a href="{% url "blog:shop_detail" shop.pk %}">
-    {{ shop.name }}
-</li>
-{% endfor %}
-</ul>
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <div class="row">
+        {% for shop in shop_list %}
+        <div class="col-sm-4">
+            <img src="{{ shop.photo.url }}" style="max-width: 100%;" />
+            <div class="caption">
+                <a href="{% url "blog:shop_detail" shop.pk %}">
+                    {{ shop.name }}
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
