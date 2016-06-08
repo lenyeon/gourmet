@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class Shop(models.Model):
     name = models.CharField(max_length=100)
@@ -12,3 +13,9 @@ class Shop(models.Model):
         return self.name
 
 
+class Review(models.Model):
+    shop = models.ForeignKey(Shop)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

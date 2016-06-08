@@ -13,6 +13,17 @@
 {{ shop.phonenumber }}
 {{ shop.address|linebreaks }}
 
+   <h3>리뷰</h3>
+     <a href="{% url "blog:review_new" shop.pk %}" class="btn btn-primary btn-block">리뷰 쓰기</a>
+    <ul>
+    {% for review in shop.review_set.all %}
+    <li>
+        {{ review.message }}
+        by {{ review.user }}
+        {{ review.created_at }}
+    </li>
+    {% endfor %}
+    </ul>
 
  <hr/>
  <a href="{% url "blog:index" %}">글 목록</a>
